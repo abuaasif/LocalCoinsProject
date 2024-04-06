@@ -1,0 +1,184 @@
+/* Filename - Services.css */
+
+.services-details {
+    margin: 20px;
+    padding: 20px;
+    /* padding-right: 40px; */
+    padding-left: 750px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input[type="text"],
+.input-group textarea,
+.input-group input[type="time"] {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.input-group textarea {
+    height: 100px;
+}
+.kkvOlq {
+    background: #05144c;
+    height: 60px;
+    padding-left: 3rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+.kkvOlq:hover {
+    background: white;
+    height: 60px;
+    padding-left: 3rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+/* Events.css */
+
+.events {
+    margin-bottom: 20px;
+    
+  }
+  
+  .events h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .events-details {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .events-details .col-md-6 {
+    width: calc(50% - 10px);
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 150px;
+    margin-top: 50px;
+  }
+  
+  .events-details label {
+    font-weight: bold;
+  }
+  
+  .events-details select,
+  .events-details input[type="number"],
+  .events-details textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .category-select {
+    height: 38px; /* Adjust as needed */
+  }
+  
+  .events-details textarea {
+    height: 100px; /* Adjust as needed */
+  }
+  
+  /* Add more specific styles if necessary */
+
+  /* Service.css */
+
+/* Service.css */
+
+/* Service.css */
+
+/* Service.css */
+
+.services {
+    margin-bottom: 20px;
+  }
+  
+  .services h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .services-details {
+    margin-bottom: 20px;
+    padding-right: 250px;
+    padding-left: 250px;
+  }
+  
+  .services-details .input-group {
+    margin-bottom: 10px;
+  }
+  
+  .services-details label {
+    font-weight: bold;
+  }
+  
+  .services-details input[type="text"],
+  .services-details input[type="time"],
+  .services-details textarea,
+  .services-details input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .services-details textarea {
+    height: 100px;
+  }
+  
+  input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  /* Hover effect */
+  input[type="submit"]:hover {
+    background-color: #45a049; /* Darker green background on hover */
+  }
+
+  .events-details input[type="submit"].submit-button {
+    padding: 8px 16px; /* Adjust padding to make it smaller */
+    font-size: 14px; /* Adjust font size */
+    width: auto; /* Allow the button to adjust its width based on content */
+    margin-top: 10px; /* Add some space between the inputs and the button */
+    margin-left: 220px;
+  }
+  
+  .events-details input[type="submit"].cancel-button {
+    padding: 8px 16px; /* Adjust padding to make it smaller */
+    font-size: 14px; /* Adjust font size */
+    width: auto; /* Allow the button to adjust its width based on content */
+    margin-top: 10px; /* Add some space between the inputs and the button */
+    margin-left: 150px;
+  }

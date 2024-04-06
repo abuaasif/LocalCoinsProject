@@ -1,0 +1,39 @@
+.events-details {
+    margin: 20px;
+    padding: 20px;
+    /* padding-right: 40px; */
+    padding-left: 450px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    
+}
+
+/* .input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input[type="text"],
+.input-group textarea,
+.input-group input[type="time"] {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.input-group textarea {
+    height: 100px;
+} */
+
+.form-select{
+    width: 30px;
+}

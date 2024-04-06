@@ -1,0 +1,207 @@
+.t12 {
+    margin-left: 90px;
+    margin-right: 140px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+ 
+   /* .page1no{
+    width: 1300px;
+    height: 400px;
+    margin-top: 10px; */
+    /* background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.5)), url("../assests/acrepair.jpg"); */
+     /* background-size: cover;
+}
+ .page{
+    color: white;
+    font-size: 45px;
+    padding-left: 60px;
+    padding-top: 180px;
+   
+}  */
+ 
+.banner4 img{
+  height: 300px;
+  width: 1300px;
+  margin-left: 67px;
+  margin-top: 30px;
+}
+ 
+.ac-c{
+  font-size: 25px;
+  margin-top: 40px;
+  margin-left: 40px;
+ 
+}
+ 
+.cc-i{
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+ position: relative;
+  /* top: -220px; */
+  left: 30px;
+}
+ 
+.img-ii{
+  width: 256px;
+  height: 130px;
+  margin-left: 1px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+ 
+}
+  .tb-h{
+    font-size: 16px;
+    margin-top: 20px;
+    margin-left: 15px;
+ 
+  }
+  .tb-h1{
+    font-size: 12px;
+    margin-left: 19px;
+    position: relative;
+    top: 1px;
+    color: grey;
+  }
+  .free{
+    font-size: 12px;
+    position: relative;
+    bottom: 14px;
+    left: 50px;
+   
+  }
+  .free-e{
+   font-size: 13px;
+   color: rgb(100, 49, 238);
+  position: relative;
+  bottom: 41px;
+  left: 20px;
+ 
+  }
+  .pup{
+    background-color:#347964;
+    width: 26px;
+    height: 20px;
+    position: relative;
+    top: -50px;
+    left: 20px;
+    color: white;
+    border-radius: 5px;
+  }
+  .hhup{
+    font-size: 12px;
+    padding-left: 4px;
+    padding-top: 2px;
+  }
+ 
+ 
+  .tb-bhibh{
+    width: 260px;
+    height: 260px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-left: 50px;
+    margin-top: 50px;
+   
+    transition: 0.15s;
+   
+  }
+  .tb-bhibh:hover{
+    box-shadow: 0px 0px 3px black;
+    transform: scale(1.2s);
+  }  
+ 
+ 
+ 
+ 
+  .tb-bhh{
+    width: 260px;
+    height: 260px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-left: 140px;
+    margin-top:50px;
+   gap:100px;
+   
+  }
+  .tb-bhh:hover{
+    box-shadow: 0px 0px 4px black;
+  }
+  @media only screen and (max-width: 768px)  {
+    .banner4 img{
+      height: 300px;
+      width: 500px;
+      margin-left: 1px;
+      margin-top: 30px;
+    }
+    .tb-bhh{
+      width: 260px;
+      height: 260px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-left: 140px;
+      margin-top:50px;
+     gap:10px;
+     
+    }
+    .t12 {
+      margin-left: 5px;
+      margin-right: 10px;
+      display: block;
+   
+    }
+ 
+  }
+  @media only screen and (min-width: 769px) and (max-width: 1200px) {
+    .banner4 img{
+      height: 400px;
+      width: 900px;
+      margin-left: 9px;
+      margin-top: 30px;
+    }
+    .tb-bhh{
+      width: 260px;
+      height: 260px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-left: 10px;
+      margin-top:10px;
+     gap:10px;
+     display: block;
+     
+    }
+    .t12 {
+      margin-left: 5px;
+      margin-right: 10px;
+      display: block;
+   
+    }
+ 
+  }
+  @media only screen and (min-width: 1201px) {
+    .t12 {
+      margin-left: 0px;
+      margin-right: 140px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .banner4 img{
+      height: 300px;
+      width: 1300px;
+      margin-left: 67px;
+      margin-top: 30px;
+    }
+    .tb-bhh{
+      width: 260px;
+      height: 260px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-left: 140px;
+      margin-top:50px;
+     gap:10px;
+     
+    }
+  }
