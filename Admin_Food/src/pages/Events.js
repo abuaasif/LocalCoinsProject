@@ -12,7 +12,6 @@ export const Events = () => {
     <div className="events">
       <h1>Events</h1>
     </div>
-
   );
 };
 
@@ -27,6 +26,8 @@ export const EventsOne = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [showUploadManually, setShowUploadManually] = useState(false);
   const [images, setImages] = useState({});
+  const [selectedImageTypes, setSelectedImageTypes] = useState({});
+  const [previewImage, setPreviewImage] = useState({});
 
   const [formData, setFormData] = useState({
     name: '',
@@ -71,8 +72,8 @@ export const EventsOne = () => {
         const data = await response.json();
         setCurrencies(data);
         if (data.length > 0) {
-          setSelectedCurrencySymbol(data[0].currency_symbol); // Corrected index to 0
-          setFormData(prevState => ({ ...prevState, currency: data[0].currency_code })); // Corrected index to 0
+          setSelectedCurrencySymbol(data[5].currency_symbol); // Corrected index to 0
+          setFormData(prevState => ({ ...prevState, currency: data[5].currency_code })); // Corrected index to 0
         }
       } catch (error) {
         console.error('There was a problem fetching the currencies:', error);
@@ -104,22 +105,18 @@ export const EventsOne = () => {
     fetchCurrencies();
   }, [formData.name, showGallery]);
 
-  const handleImageSelection = (imageUrl) => {
+  const handleImageSelection = (selectedImage) => {
     setSelectedImages(prevState => {
-      if (prevState.includes(imageUrl)) {
-        return prevState.filter(url => url !== imageUrl);
+      if (prevState.some(image => image.url === selectedImage.url)) {
+        return prevState.filter(image => image.url !== selectedImage.url);
       } else {
-        return [...prevState, imageUrl];
+        return [...prevState, selectedImage];
       }
     });
-  };
-
-  const handleUploadImages = () => {
-    setFormData(prevState => ({
+    setSelectedImageTypes(prevState => ({
       ...prevState,
-      images: selectedImages
+      [selectedImage.url]: galleryImages.find(image => image.url === selectedImage.url)?.type, // Find file type from gallery images
     }));
-    setShowGallery(false); // Hide the gallery after uploading
   };
 
   const handleInputChange = (e) => {
@@ -138,15 +135,27 @@ export const EventsOne = () => {
     }
   };
 
-
   const handleImageChange = (e) => {
-    const key = e.target.id;
-    // setFormData(prevState => ({ ...prevState, images: e.target.files[0] }));
-    // Update the images state with the new file, preserving existing ones
-    setImages({
-      ...images,
-      [key]: e.target.files[0], // Assuming you want to handle one file per input
-    });
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImages({
+          ...images,
+          [e.target.name]: file,
+        });
+        setPreviewImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleUploadImages = () => {
+    setFormData(prevState => ({
+      ...prevState,
+      images: selectedImages
+    }));
+    setShowGallery(false); // Hide the gallery after uploading
   };
 
   const handleSubmit = async (e) => {
@@ -161,11 +170,7 @@ export const EventsOne = () => {
       toast.error(`Please fill out all required fields: ${missingFields.join(', ')}`);
       return; // Prevent the form submission
     }
-    if (missingFields.length > 0) {
-      // Display a toast message indicating the missing fields
-      toast.error(`Please fill out all required fields: ${missingFields.join(', ')}`);
-      return; // Prevent the form submission
-    }
+
     const formDataToSend = new FormData();
     Object.keys(formData).forEach(key => {
       formDataToSend.append(key, formData[key]);
@@ -176,10 +181,7 @@ export const EventsOne = () => {
       formDataToSend.append(`images`, images[key]);
     });
 
-
     try {
-
-
       const response = await fetch('http://localhost:3001/api/createProduct', {
         method: 'POST',
         body: formDataToSend
@@ -254,19 +256,39 @@ export const EventsOne = () => {
                 <input type="number" className="form-control" id="rating" name="rating" min="1" max="5" value={formData.rating} onChange={handleInputChange}
                   onFocus={() => setShowGallery(false)} />
               </div>
-              {galleryImages.length <= 0 && (<div className="form-group" style={{ marginTop: '60px' }}>
+              {galleryImages.length <= 0 && selectedImages.length < 1 && (<div className="form-group" style={{ marginTop: '60px' }}>
                 <div>
-                  <label htmlFor="Image">Upload Image Manually</label>
-                  <input type="file" className="btn btn-success me-2" id="images" name="images" onChange={handleImageChange} style={{ height: '45px', width: '250px' }} />
+                  <label htmlFor="images"></label>
+                  <input type="file" className="btn btn-success me-2" id="images" name="images" onChange={handleImageChange} style={{ display: 'none' }} />
+                  <button className="btn btn-success me-2" onClick={() => document.getElementById('images').click()} style={{ height: '45px', width: '250px' }}>
+                    Select Image
+                  </button>
                 </div>
+                {previewImage && (
+                  <div>
+                    <h3>Preview</h3>
+                    <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', maxHeight: '200px' }} />
+                  </div>
+                )}
+
               </div>)}
+              <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                {selectedImages.map(image => (
+                  <div key={image.url} style={{ flex: '0 0 auto', width: '200px', margin: '10px', textAlign: 'center' }}>
+                    <img src={image.url} alt="Uploaded" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+                    <p>{galleryImages.find(img => img.url === image.url)?.name}</p>
+                  </div>
+                ))}
+              </div>
+              
+
             </div>
           </div>
           {showGallery && galleryImages.length > 0 && (
             <div className="row mt-3"> {/* Second sub-grid for the image gallery */}
               <div className="col">
                 {/* Image Gallery goes here. Use a component or logic to render selected images */}
-                <div className="image-gallery-container p-4 bg-light border rounded-3 mb-4 shadow" style={{ maxHeight: '400px', overflowY: 'scroll' }}>
+                <div className="image-gallery-container p-4 bg-light border rounded-3 mb-4 shadow" style={{ maxHeight: '400px', width: '100%', overflowY: 'scroll' }}>
                   {/* Container for image thumbnails */}
                   <div className="row g-3">
                     {galleryImages.length > 0 && (<p>Image Gallery</p>)}
@@ -287,8 +309,8 @@ export const EventsOne = () => {
                                     <input
                                       className="form-check-input"
                                       type="checkbox"
-                                      checked={selectedImages.includes(image.url)}
-                                      onChange={() => handleImageSelection(image.url)}
+                                      checked={selectedImages.some(selectedImage => selectedImage.url === image.url)}
+                                      onChange={() => handleImageSelection(image)}
                                       id={`image-check-${image.url}`}
                                     />
                                     <label className="form-check-label small" htmlFor={`image-check-${image.id}`}>
@@ -314,6 +336,7 @@ export const EventsOne = () => {
               </div>
             </div>
           )}
+
           <button type="submit" className="btn btn-primary mt-3">Submit</button>
         </form>
       </div>
@@ -328,4 +351,3 @@ export const EventsTwo = () => {
     </div>
   );
 };
-
