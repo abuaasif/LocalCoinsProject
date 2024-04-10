@@ -149,14 +149,20 @@ export const EventsOne = () => {
       reader.readAsDataURL(file);
     }
   };
-
   const handleUploadImages = () => {
-    setFormData(prevState => ({
+    // Hide the gallery after uploading
+    setShowGallery(false);
+
+    // Ensure selectedImages is an array of image URLs
+    const selectedImageUrls = selectedImages.map(image => image.url);
+
+    // Update the form data with the selected image URLs
+    setImages(prevState => ({
       ...prevState,
-      images: selectedImages
+      images: selectedImageUrls
     }));
-    setShowGallery(false); // Hide the gallery after uploading
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -172,15 +178,18 @@ export const EventsOne = () => {
     }
 
     const formDataToSend = new FormData();
+
+    // Append other form data
     Object.keys(formData).forEach(key => {
       formDataToSend.append(key, formData[key]);
     });
 
-    Object.keys(images).forEach((key, index) => {
-      // Use a more descriptive name for your files if necessary
-      formDataToSend.append(`images`, images[key]);
+
+    Object.keys(images).forEach((key,index)=>{
+      formDataToSend.append('images',images[key])
     });
 
+      // Check if an image file is selected
     try {
       const response = await fetch('http://localhost:3001/api/createProduct', {
         method: 'POST',
@@ -195,12 +204,14 @@ export const EventsOne = () => {
     }
   };
 
+
+
   return (
     <>
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <div className="container mt-6" >
         <form onSubmit={handleSubmit}>
-          <div className="row">
+          <div className="row" >
             <div className="col-md-6" style={{ marginTop: '130px' }}> {/* First sub-grid */}
               <div className="form-group">
                 <label htmlFor="productName">Product Name</label>
@@ -280,7 +291,7 @@ export const EventsOne = () => {
                   </div>
                 ))}
               </div>
-              
+
 
             </div>
           </div>
